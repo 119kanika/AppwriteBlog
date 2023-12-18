@@ -6,3 +6,4 @@ function Container({children}) {
 }
 
 export default Container
+//It is just like a box container that accepts properties as children

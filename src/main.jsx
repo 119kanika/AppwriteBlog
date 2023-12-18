@@ -84,3 +84,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Provider>
   </React.StrictMode>,
 )
+
+// provider component makes the redux store available to any nested components that need to access the redux store

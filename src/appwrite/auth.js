@@ -18,9 +18,10 @@ export class AuthService {
         try {
             const userAccount = await this.account.create(ID.unique(), email, password, name);
             if (userAccount) {
-                // call another method
+                // is user account exist/created then login them as well.
                 return this.login({email, password});
             } else {
+                // if acc not present then return and handle later.
                return  userAccount;
             }
         } catch (error) {
@@ -37,6 +38,7 @@ export class AuthService {
     }
 
     async getCurrentUser() {
+        //check which account is logged in.
         try {
             return await this.account.get();
         } catch (error) {
@@ -49,6 +51,7 @@ export class AuthService {
     async logout() {
 
         try {
+            // delete the current session
             await this.account.deleteSessions();
         } catch (error) {
             console.log("Appwrite serive :: logout :: error", error);
@@ -58,4 +61,8 @@ export class AuthService {
 
 const authService = new AuthService();
 
-export default authService
+export default authService;
+
+
+
+// in documentation, promise is used but we have used async await cuz we need user to create account first then only go forward.
