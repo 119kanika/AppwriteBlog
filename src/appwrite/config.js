@@ -31,7 +31,7 @@ export class Service{
                 }
             )
         } catch (error) {
-            console.log("Appwrite serive :: createPost :: error", error);
+            console.log("Appwrite servicee :: createPost :: error", error);
         }
     }
 
