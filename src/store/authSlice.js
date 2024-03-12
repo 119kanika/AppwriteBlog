@@ -1,4 +1,4 @@
-//file created for tracking user authentication.
+ //file created for tracking user authentication.
 
 import { createSlice } from "@reduxjs/toolkit";
 
