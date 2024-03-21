@@ -1,6 +1,7 @@
 import React from 'react'
 import {Editor } from '@tinymce/tinymce-react';
 import {Controller } from 'react-hook-form';
+import conf from '../conf/conf';
 
 
 export default function RTE({name, control, label, defaultValue =""}) {
@@ -13,7 +14,7 @@ export default function RTE({name, control, label, defaultValue =""}) {
     control={control}
     render={({field: {onChange}}) => (
         <Editor
-        apiKey='cufras3dc34kr692tkliibyulcnrjil4dvsux9uuhl2arnr3'
+        apiKey= {conf.apiKey}
         initialValue={defaultValue}
         init={{
             initialValue: defaultValue,
@@ -43,7 +44,19 @@ export default function RTE({name, control, label, defaultValue =""}) {
             ],
             toolbar:
             "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
-            content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
+            content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+
+            setup: function (editor) {
+              var max = 1000;
+              editor.on('submit', function (event) {
+                var numChars = tinymce.activeEditor.plugins.wordcount.body.getCharacterCount();
+                if (numChars > max) {
+                  alert("Maximum " + max + " characters allowed.");
+                  event.preventDefault();
+                  return false;
+                }
+              });
+            }
         }}
         onEditorChange={onChange}
         />
