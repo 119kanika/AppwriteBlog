@@ -1,9 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import appwriteService from "../appwrite/config";
-import {Container, PostCard} from '../components'
+import {Container, PostCard} from '../components';
+// import authSlice from '../store/authSlice';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function Home() {
     const [posts, setPosts] = useState([])
+    const authStatus = useSelector(state => state.auth.status)
 
     useEffect(() => {
         appwriteService.getPosts().then((posts) => {
@@ -22,6 +26,7 @@ function Home() {
                             <h1 className="text-2xl font-bold hover:text-gray-500">
                                 Login to read posts
                             </h1>
+                {!authStatus && <h2>Start adding your posts. <Link className='text-teal-500 font-bold' to={'/login'}>Login</Link></h2>}
                         </div>
                     </div>
                 </Container>

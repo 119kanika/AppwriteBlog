@@ -30,11 +30,11 @@ function App() {
   //here we'll do conditional rendering
   // if loading false
   return !loading ? (
-    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
-      <div className='w-full block'>
+    <div className='min-h-screen flex flex-wrap content-between'>
+      <div className='w-full block min-h-screen flex flex-col'>
         <Header />
         <main>
-        TODO:  <Outlet />
+        <Outlet />
         </main>
         <Footer />
       </div>
